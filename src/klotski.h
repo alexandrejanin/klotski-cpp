@@ -26,6 +26,13 @@ public:
 
     char get_char(Position position) const;
 
+    // Attempts to move the block n spaces down
+    bool down_n(unsigned int block, int n);
+
+    bool down(unsigned int block);
+
+    bool down2(unsigned int block);
+
     std::string display() const;
 
     std::string signature() const;
@@ -46,6 +53,13 @@ private:
 
     // If all of the positions in target_pos are occupied by the block with ID key_block, the game is won.
     std::vector<Position> target_pos;
+
+    void set_block(int x, int y, int block);
+
+    void set_block(Position position, int block);
+
+    // Checks if the specified block can move n spaces down
+    bool can_move_down(unsigned int block, int n = 1);
 };
 
 #endif //KLOTSKI_H
