@@ -18,8 +18,6 @@ public:
     // Default game configuration
     Klotski();
 
-    Klotski(std::vector<std::vector<int>> board, unsigned int keyBlock, std::vector<Position> targetPos);
-
     int get_block(int x, int y) const;
 
     int get_block(Position position) const;
@@ -30,9 +28,13 @@ public:
 
     std::string display() const;
 
+    std::string signature() const;
+
     friend std::ostream &operator<<(std::ostream &ostream, const Klotski &klotski);
 
 private:
+    Klotski(std::vector<std::vector<int>> board, unsigned int keyBlock, std::vector<Position> targetPos);
+
     // Current position of blocks on the board.
     // Positions are accessed in the format [y][x].
     // If the value of a position is >= 0, it means the block with said value is occupying this position.

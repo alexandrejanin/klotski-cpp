@@ -1,8 +1,4 @@
 #include <utility>
-
-#include <utility>
-
-#include <utility>
 #include "klotski.h"
 
 Klotski::Klotski()
@@ -26,18 +22,6 @@ std::ostream &operator<<(std::ostream &ostream, const Klotski &klotski) {
     return ostream << klotski.display();
 }
 
-std::string Klotski::display() const {
-    std::string string;
-    for (int y = 0; y < height; ++y) {
-        for (int x = 0; x < width; ++x) {
-            string += get_char(x, y);
-        }
-        string += '\n';
-    }
-
-    return string;
-}
-
 int Klotski::get_block(int x, int y) const {
     return board[y][x];
 }
@@ -49,10 +33,31 @@ int Klotski::get_block(Position position) const {
 char Klotski::get_char(int x, int y) const {
     int block = get_block(x, y);
     if (block < 0)
-        return ' ';
+        return '.';
     return '0' + block;
 }
 
 char Klotski::get_char(Position position) const {
     return get_char(position.x, position.y);
+}
+
+std::string Klotski::display() const {
+    std::string string;
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            string += get_char(x, y);
+        }
+        string += '\n';
+    }
+    return string;
+}
+
+std::string Klotski::signature() const {
+    std::string sig;
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            sig += get_char(x, y);
+        }
+    }
+    return sig;
 }
